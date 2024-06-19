@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Boutons Redirection</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .button {
+            margin-bottom: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <button class="button" onclick="window.location.href='https://docs.github.com/fr/pages/getting-started-with-github-pages/creating-a-github-pages-site'">
+            GitHub Pages
+        </button>
+        <button class="button" onclick="window.location.href='https://mail.google.com/mail/u/0/#inbox'">
+            Gmail
+        </button>
+        <button class="button" onclick="window.location.href='https://www.google.fr/maps/@45.9174324,6.0132809,14z'">
+            Google Maps
+        </button>
+    </div>
+</body>
+</html>
