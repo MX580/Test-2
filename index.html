@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Méta pour l'adaptabilité mobile -->
     <title>Boutons Redirection</title>
     <style>
         body {
@@ -16,6 +17,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            border: 2px solid red; /* Cadre rouge autour de la zone des boutons */
+            padding: 10px;
+            max-width: 9rem; /* Largeur maximale pour le format 9/16 */
+            height: 16rem; /* Hauteur fixe pour le format 9/16 */
+            overflow-y: auto; /* Activation du défilement vertical si nécessaire */
+            box-sizing: border-box; /* Inclure le padding et la bordure dans les dimensions */
         }
         .button {
             margin-bottom: 10px;
