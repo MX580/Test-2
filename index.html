@@ -29,17 +29,32 @@
             padding: 10px 20px;
             font-size: 16px;
             text-align: center;
-            background: linear-gradient(to bottom, #007bff, #0056b3); /* Dégradé de couleur */
             color: white;
             border: none;
             cursor: pointer;
-            transition: background 0.3s ease, transform 0.2s ease;
+            transition: transform 0.2s ease;
             border-radius: 5px; /* Coins arrondis */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce */
+            
+            /* Dégradé animé */
+            background: linear-gradient(90deg, red, blue);
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
         }
         .button:hover {
-            background: linear-gradient(to bottom, #0056b3, #003d80); /* Changement de dégradé au survol */
             transform: scale(1.1); /* Grossissement au survol */
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
     </style>
 </head>
