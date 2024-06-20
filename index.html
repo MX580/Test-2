@@ -2,73 +2,85 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Méta pour l'adaptabilité mobile -->
-    <title>Boutons Redirection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linktree Clone</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0; /* Couleur de fond de la page */
-        }
-        .button-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border: 2px solid red; /* Cadre rouge autour de la zone des boutons */
-            padding: 10px;
-            max-width: 9rem; /* Largeur maximale pour le format 9/16 */
-            height: 16rem; /* Hauteur fixe pour le format 9/16 */
-            overflow-y: auto; /* Activation du défilement vertical si nécessaire */
-            box-sizing: border-box; /* Inclure le padding et la bordure dans les dimensions */
-        }
-        .button {
-            margin-bottom: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            text-align: center;
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-            border-radius: 5px; /* Coins arrondis */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce */
-            
-            /* Dégradé animé */
-            background: linear-gradient(90deg, red, blue);
-            background-size: 200% 200%;
-            animation: gradient 3s ease infinite;
-        }
-        .button:hover {
-            transform: scale(1.1); /* Grossissement au survol */
         }
 
-        @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .profile {
+            margin-bottom: 20px;
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .profile h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .profile p {
+            font-size: 16px;
+            color: gray;
+        }
+
+        .links .link {
+            display: block;
+            background-color: #6200ea;
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            transition: background-color 0.3s;
+        }
+
+        .links .link:hover {
+            background-color: #3700b3;
         }
     </style>
 </head>
 <body>
-    <div class="button-container">
-        <button class="button" onclick="window.location.href='https://docs.github.com/fr/pages/getting-started-with-github-pages/creating-a-github-pages-site'">
-            GitHub Pages
-        </button>
-        <button class="button" onclick="window.location.href='https://mail.google.com/mail/u/0/#inbox'">
-            Gmail
-        </button>
-        <button class="button" onclick="window.location.href='https://www.google.fr/maps/@45.9174324,6.0132809,14z'">
-            Google Maps
-        </button>
+    <div class="container">
+        <div class="profile">
+            <img src="profile.jpg" alt="Votre Photo de Profil" class="profile-img">
+            <h1>Votre Nom</h1>
+            <p>@votre_nom_utilisateur</p>
+        </div>
+        <div class="links">
+            <a href="https://example.com/link1" class="link">Lien 1</a>
+            <a href="https://example.com/link2" class="link">Lien 2</a>
+            <a href="https://example.com/link3" class="link">Lien 3</a>
+            <a href="https://example.com/link4" class="link">Lien 4</a>
+        </div>
     </div>
 </body>
 </html>
