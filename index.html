@@ -1,102 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shanon Cary</title>
-<style>
-body, html {
-    height: 100%;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(to bottom, #FF8C00, #2F4F4F);
-}
- 
-.container {
-    text-align: center;
-    background: #fff;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 300px;
-}
- 
-.profile-pic {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-}
- 
-h1 {
-    margin: 10px 0;
-    font-size: 24px;
-}
- 
-p {
-    margin: 10px 0;
-    font-size: 14px;
-    color: #666;
-}
- 
-.buttons {
-    margin: 20px 0;
-}
- 
-.button {
-    display: block;
-    margin: 10px 0;
-    padding: 10px;
-    background: #fff;
-    border: 2px solid #2F4F4F;
-    border-radius: 5px;
-    text-decoration: none;
-    color: #2F4F4F;
-    font-weight: bold;
-    transition: background 0.3s, color 0.3s;
-}
- 
-.button:hover {
-    background: #2F4F4F;
-    color: #fff;
-}
- 
-.social-icons {
-    margin-top: 20px;
-}
- 
-.social-icons img {
-    width: 30px;
-    margin: 0 10px;
-    transition: opacity 0.3s;
-}
- 
-.social-icons img:hover {
-    opacity: 0.7;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototype NFC Collection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .navbar {
+            display: flex;
+            background-color: #333;
+            justify-content: space-around;
+            padding: 14px 0;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+        }
+        .tab-content {
+            flex: 1;
+            display: none;
+            padding: 20px;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .collection {
+            margin-bottom: 20px;
+        }
+        .collection-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .item {
+            padding: 8px;
+            border: 1px solid #ccc;
+            margin-bottom: 5px;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-    <div class="profile">
-        <img src="profile.jpg" alt="Shanon Cary" class="profile-pic">
-        <h1>Shanon Cary</h1>
-        <p>Hard times, hard techno</p>
+    <div class="navbar">
+        <a href="#" class="tab-link" data-tab="presentation">Présentation</a>
+        <a href="#" class="tab-link" data-tab="collection">Collection</a>
     </div>
-    <div class="buttons">
-        <a href="https://boilerroom.tv/" class="button">Boilerroom set</a>
-        <a href="https://djsetup.com/" class="button">DJ Set up</a>
-        <a href="https://bookmeforaconcert.com/" class="button">Book me for a concert</a>
-        <a href="https://seratoconcert.com/" class="button">Serato Concert</a>
+    <div id="presentation" class="tab-content">
+        <h2>Bienvenue dans l'application de collection NFC</h2>
+        <p>Scannez les tags NFC pour déverrouiller les éléments de la collection.</p>
     </div>
-    <div class="social-icons">
-        <a href="https://twitter.com"><img src="twitter.png" alt="Twitter"></a>
-        <a href="https://instagram.com"><img src="instagram.png" alt="Instagram"></a>
-        <a href="https://spotify.com"><img src="spotify.png" alt="Spotify"></a>
+    <div id="collection" class="tab-content">
+        <button onclick="simulateNfcScan('3')">Simuler scan NFC pour déverrouiller l'élément 3 de la collection 1</button>
+        <div id="collections"></div>
     </div>
-</div>
+
+    <script>
+        const collections = [
+            { id: '1', items: [false, false, false, false, false] },
+            { id: '2', items: [false, false, false, false, false] },
+            { id: '3', items: [false, false, false, false, false] },
+            { id: '4', items: [false, false, false, false, false] },
+            { id: '5', items: [false, false, false, false, false] },
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.tab-link');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = tab.getAttribute('data-tab');
+
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                    });
+
+                    document.getElementById(target).classList.add('active');
+                });
+            });
+
+            renderCollections();
+        });
+
+        function renderCollections() {
+            const collectionsContainer = document.getElementById('collections');
+            collectionsContainer.innerHTML = '';
+
+            collections.forEach(collection => {
+                const collectionDiv = document.createElement('div');
+                collectionDiv.classList.add('collection');
+
+                const collectionTitle = document.createElement('div');
+                collectionTitle.classList.add('collection-title');
+                collectionTitle.textContent = `Collection ${collection.id}`;
+                collectionDiv.appendChild(collectionTitle);
+
+                collection.items.forEach((unlocked, index) => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.classList.add('item');
+                    itemDiv.textContent = unlocked ? 'Déverrouillé' : 'Verrouillé';
+                    collectionDiv.appendChild(itemDiv);
+                });
+
+                collectionsContainer.appendChild(collectionDiv);
+            });
+        }
+
+        function simulateNfcScan(tagId) {
+            collections.forEach((collection, collectionIndex) => {
+                if (collectionIndex === 0 && tagId === '3') {
+                    collection.items[2] = true;
+                }
+            });
+
+            renderCollections();
+        }
+    </script>
 </body>
 </html>
